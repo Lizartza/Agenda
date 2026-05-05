@@ -91,3 +91,63 @@ Consecuencias:
 - Las pantallas principales se construiran con composables.
 - La UI quedara integrada en Kotlin, reduciendo separacion entre XML y codigo.
 - El widget Android se evaluara aparte, usando Glance o RemoteViews/XML segun convenga.
+
+## 2026-05-05 - Eventos y tareas como conceptos separados
+
+Decision:
+Eventos y tareas seran conceptos separados. Un evento representa un bloque de tiempo en el calendario. Una tarea representa algo pendiente o en progreso que puede recibir uno o varios bloques de tiempo.
+
+Motivo:
+La agenda debe servir tanto para registrar compromisos fijos como para decidir a que tarea dedicar tiempo cuando haya un hueco disponible.
+
+Alternativas consideradas:
+- Usar un unico tipo de elemento de agenda para todo.
+- Convertir una tarea en evento y eliminarla de la lista de pendientes.
+- Mantener eventos y tareas separados, permitiendo vincular eventos a tareas.
+
+Consecuencias:
+- Los eventos pueden existir sin estar vinculados a ninguna tarea.
+- Una tarea puede tener varios eventos asociados en distintos dias u horarios.
+- Programar una tarea no la completa ni la elimina.
+- Una tarea solo deja de aparecer como pendiente cuando el usuario la marca como completada.
+- Los eventos y tareas no tendran descripcion en la primera version; el titulo sera suficiente.
+
+## 2026-05-05 - Prioridad, estado y orden de tareas
+
+Decision:
+Las tareas tendran prioridad, estado y fecha limite opcional. La lista principal dara preferencia a las tareas vencidas o con fecha limite en los proximos 7 dias.
+
+Motivo:
+La agenda debe ayudar a elegir que tarea hacer cuando hay tiempo disponible, destacando primero lo urgente y despues lo importante.
+
+Alternativas consideradas:
+- Ordenar solo por prioridad.
+- Ordenar solo por fecha limite.
+- Obligar a que todas las tareas tengan fecha limite.
+
+Consecuencias:
+- Las prioridades iniciales seran alta, media y baja.
+- Los estados iniciales seran pendiente, en progreso y completada.
+- La fecha limite sera opcional.
+- Las tareas completadas no apareceran en la lista principal.
+- Primero apareceran las tareas vencidas o que vencen en 7 dias o menos.
+- Dentro del bloque urgente, se ordenara por fecha limite mas cercana y despues por prioridad.
+- El resto de tareas se ordenara por prioridad, despues por fecha limite y finalmente por fecha de creacion.
+
+## 2026-05-05 - Palabras clave separadas por tipo de accion
+
+Decision:
+Separar las autorizaciones del proyecto en tres palabras clave: `PROGRAMALO`, `DOCUMENTALO` y `SUBELO A GITHUB`.
+
+Motivo:
+Usar `PROGRAMALO` para cualquier cambio no era practico. Separar codigo, documentacion y subida a GitHub da mas control y evita ambiguedades.
+
+Alternativas consideradas:
+- Mantener solo `PROGRAMALO` para todo.
+- Usar comandos informales sin documentarlos.
+
+Consecuencias:
+- `PROGRAMALO` queda reservado para cambios en codigo o estructura tecnica.
+- `DOCUMENTALO` autoriza modificar documentacion del proyecto.
+- `SUBELO A GITHUB` autoriza crear commits y hacer push al repositorio remoto.
+- Sin una palabra clave aplicable, Codex solo puede analizar, explicar, planear, revisar o proponer.
