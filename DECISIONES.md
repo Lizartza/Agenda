@@ -195,3 +195,25 @@ Consecuencias:
 - Si una tarea tiene categoria y se crea un evento desde ella, el evento heredara esa categoria.
 - Las categorias iniciales seran `General`, `Trabajo`, `Estudio`, `Salud`, `Personal` y `Ocio`.
 - Mas adelante se podran usar categorias para filtrar vistas.
+
+## 2026-05-05 - Navegacion principal, pantalla Hoy y widget
+
+Decision:
+La app usara una barra inferior con cinco secciones principales: Hoy, Semana, Mes, Tareas y Ajustes. La pantalla Hoy sera la vista principal al abrir la app, y el widget mostrara un resumen informativo de Hoy.
+
+Motivo:
+El objetivo central de la app es organizar el dia desde el movil. Separar el tiempo planificado de la lista de tareas mantiene la experiencia clara.
+
+Alternativas consideradas:
+- Usar menu lateral.
+- Mostrar tareas pendientes directamente en Hoy.
+- Crear un widget interactivo desde la primera version.
+
+Consecuencias:
+- Hoy mostrara la fecha actual, linea temporal del dia, eventos normales y bloques de tareas programadas para hoy.
+- Hoy no mostrara la lista general de tareas pendientes.
+- Las tareas pendientes y en progreso viviran en la pestana Tareas.
+- Desde Tareas se podra seleccionar una tarea y asignarle un bloque de tiempo.
+- El widget mostrara resumen de Hoy, incluyendo proximos eventos y bloques programados.
+- El widget no mostrara la lista general de tareas pendientes.
+- El widget tendra interaccion minima en la primera version: al tocarlo abrira la app en Hoy.
