@@ -174,3 +174,24 @@ Consecuencias:
 - La app permitira eventos solapados, pero avisara al usuario cuando detecte conflicto.
 - Las opciones iniciales de recordatorio seran sin recordatorio, a la hora del evento, 5 minutos antes, 15 minutos antes, 30 minutos antes, 1 hora antes y 1 dia antes.
 - El recordatorio por defecto sera 1 hora antes.
+
+## 2026-05-05 - Categorias compartidas por eventos y tareas
+
+Decision:
+Usar categorias con nombre y color para organizar eventos y tareas.
+
+Motivo:
+Las categorias mejoran la legibilidad del calendario, ayudan a distinguir tipos de actividad y permiten futuros filtros por area.
+
+Alternativas consideradas:
+- Usar solo color manual por evento.
+- Usar categorias solo para eventos.
+- Usar categorias compartidas por eventos y tareas.
+
+Consecuencias:
+- Cada categoria tendra `id`, `nombre` y `color`.
+- Eventos y tareas podran tener categoria opcional.
+- Existira una categoria por defecto llamada `General`.
+- Si una tarea tiene categoria y se crea un evento desde ella, el evento heredara esa categoria.
+- Las categorias iniciales seran `General`, `Trabajo`, `Estudio`, `Salud`, `Personal` y `Ocio`.
+- Mas adelante se podran usar categorias para filtrar vistas.
