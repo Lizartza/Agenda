@@ -21,3 +21,4 @@ Este archivo resume avances relevantes del proyecto en orden cronologico.
 - Se definio que las tareas tendran prioridad alta, media o baja, estado pendiente, en progreso o completada, y fecha limite opcional.
 - Se definio que la lista de tareas destacara primero las vencidas o las que venzan en los proximos 7 dias.
 - Se separaron las autorizaciones en `PROGRAMALO` para codigo, `DOCUMENTALO` para documentacion y `SUBELO A GITHUB` para commits y push.
+- Se definio el modelo inicial de eventos, incluyendo repeticion simple, solapamientos permitidos con aviso y recordatorio por defecto de 1 hora.

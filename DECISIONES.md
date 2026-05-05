@@ -151,3 +151,26 @@ Consecuencias:
 - `DOCUMENTALO` autoriza modificar documentacion del proyecto.
 - `SUBELO A GITHUB` autoriza crear commits y hacer push al repositorio remoto.
 - Sin una palabra clave aplicable, Codex solo puede analizar, explicar, planear, revisar o proponer.
+
+## 2026-05-05 - Modelo inicial de eventos
+
+Decision:
+Los eventos representaran bloques de tiempo en el calendario, con titulo, fecha, hora de inicio, hora de fin, opcion de todo el dia, repeticion simple, recordatorio, color o categoria, y `tareaId` opcional.
+
+Motivo:
+La agenda necesita representar compromisos fijos, rutinas y bloques dedicados a tareas, manteniendo un modelo simple para la primera version.
+
+Alternativas consideradas:
+- No incluir repeticion en la primera version.
+- Incluir repeticion avanzada desde el principio.
+- Bloquear eventos solapados.
+
+Consecuencias:
+- Los eventos no tendran descripcion en la primera version.
+- Un evento podra ser normal o estar vinculado a una tarea.
+- Borrar un evento vinculado no borrara la tarea asociada.
+- Completar una tarea no borrara automaticamente sus eventos pasados.
+- La repeticion inicial permitira eventos diarios, semanales o en dias concretos de la semana.
+- La app permitira eventos solapados, pero avisara al usuario cuando detecte conflicto.
+- Las opciones iniciales de recordatorio seran sin recordatorio, a la hora del evento, 5 minutos antes, 15 minutos antes, 30 minutos antes, 1 hora antes y 1 dia antes.
+- El recordatorio por defecto sera 1 hora antes.
