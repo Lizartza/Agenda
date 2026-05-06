@@ -337,3 +337,23 @@ Consecuencias:
 - El widget de Hoy usara Glance en la primera version.
 - Si Glance limita demasiado el widget, se evaluara RemoteViews como alternativa.
 - El identificador tecnico de la app sera `com.lizartza.agenda`.
+
+## 2026-05-06 - Division del trabajo en chats por seccion
+
+Decision:
+Dividir el desarrollo en ocho chats/secciones de trabajo y documentar sus responsabilidades en `SECCIONES.md`.
+
+Motivo:
+Separar el trabajo por areas evita mezclar contextos, reduce cambios fuera de alcance y permite que cada chat se centre en una responsabilidad concreta.
+
+Alternativas consideradas:
+- Continuar todo el desarrollo en un unico chat.
+- Crear chats por area sin reglas de frontera.
+- Crear chats por seccion con responsabilidades documentadas.
+
+Consecuencias:
+- Las secciones iniciales seran Base Android, Datos Locales Room, Tareas, Calendario/Eventos, Programar Tareas, Notificaciones, Widget Hoy y Ajustes/Categorias.
+- Cada chat debe respetar su seccion asignada.
+- Si un chat necesita modificar otra seccion, no debe hacerlo directamente.
+- El chat debe explicar la dependencia y proponer un prompt para el chat responsable.
+- El usuario decidira si autoriza o traslada el trabajo al chat correspondiente.

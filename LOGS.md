@@ -37,3 +37,5 @@ Este archivo resume avances relevantes del proyecto en orden cronologico.
 - Se decidio usar Hilt para inyeccion de dependencias.
 - Se decidio usar Jetpack Compose, Material 3, Navigation Compose, Room, Coroutines, Flow, Hilt, AlarmManager y Glance como librerias base.
 - Se definio `com.lizartza.agenda` como nombre de paquete Android.
+- Se definieron ocho secciones de trabajo para chats separados y se creo `SECCIONES.md`.
+- Se establecio que cada chat debe respetar su seccion y pedir permiso si necesita cambios en otra.
