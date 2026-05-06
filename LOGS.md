@@ -33,3 +33,7 @@ Este archivo resume avances relevantes del proyecto en orden cronologico.
 
 - Se definio el modelo tecnico de datos local con `TaskEntity`, `EventEntity` y `CategoryEntity`.
 - Se decidio usar IDs `Long` autogenerados, enums para valores cerrados y tipos `LocalDate`, `LocalTime` y `LocalDateTime` con conversores Room.
+- Se decidio organizar la app en un unico modulo Android `app` con paquetes internos `data`, `domain`, `ui`, `notifications` y `widget`.
+- Se decidio usar Hilt para inyeccion de dependencias.
+- Se decidio usar Jetpack Compose, Material 3, Navigation Compose, Room, Coroutines, Flow, Hilt, AlarmManager y Glance como librerias base.
+- Se definio `com.lizartza.agenda` como nombre de paquete Android.

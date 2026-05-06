@@ -288,3 +288,52 @@ Consecuencias:
 - Se usaran enums para `TaskPriority`, `TaskStatus`, `ReminderOption` y `RecurrenceType`.
 - Se usara `LocalDate` para fechas, `LocalTime` para horas y `LocalDateTime` para marcas temporales.
 - Room necesitara `TypeConverters` para guardar esos tipos de fecha/hora y enums.
+
+## 2026-05-06 - Arquitectura interna e inyeccion de dependencias
+
+Decision:
+Usar una arquitectura simple de un solo modulo Android `app`, organizada por paquetes internos, y usar Hilt para inyeccion de dependencias.
+
+Motivo:
+La app necesita una estructura clara sin introducir la complejidad de un proyecto multi-modulo en la primera version. Hilt permite conectar ViewModels, repositorios, DAOs, base de datos y servicios de forma ordenada.
+
+Alternativas consideradas:
+- Crear un proyecto multi-modulo desde el principio.
+- Usar paquetes internos dentro de un unico modulo `app`.
+- Gestionar dependencias manualmente.
+- Usar Hilt para inyeccion de dependencias.
+
+Consecuencias:
+- El proyecto tendra un unico modulo Android `app` en la primera version.
+- La organizacion interna seguira paquetes principales: `data`, `domain`, `ui`, `notifications` y `widget`.
+- `data` contendra persistencia local, DAOs, entidades Room y repositorios.
+- `domain` contendra modelos de dominio y reglas de negocio, como ordenar tareas, detectar solapamientos o programar tareas.
+- `ui` contendra pantallas Compose, ViewModels, navegacion y componentes reutilizables.
+- `notifications` contendra la logica de recordatorios.
+- `widget` contendra la logica del widget de Hoy.
+- Hilt se configurara desde el inicio para inyectar dependencias como repositorios, DAOs, base de datos y servicios.
+
+## 2026-05-06 - Librerias base y nombre de paquete Android
+
+Decision:
+Usar un stack Android moderno basado en Jetpack Compose, Room, Hilt, Coroutines, Flow, AlarmManager y Glance. El nombre de paquete Android sera `com.lizartza.agenda`.
+
+Motivo:
+Estas librerias cubren las necesidades principales de la app: interfaz moderna, navegacion, persistencia local, inyeccion de dependencias, datos reactivos, recordatorios exactos y widget de Hoy.
+
+Alternativas consideradas:
+- Usar WorkManager para recordatorios.
+- Usar AlarmManager para recordatorios exactos.
+- Usar RemoteViews para el widget.
+- Usar Glance para el widget.
+
+Consecuencias:
+- La UI principal usara Jetpack Compose y Material 3.
+- La navegacion entre pantallas usara Navigation Compose.
+- La persistencia local usara Room.
+- La app usara Kotlin Coroutines y Flow para operaciones asincronas y datos reactivos.
+- La inyeccion de dependencias usara Hilt.
+- Los recordatorios usaran AlarmManager para permitir avisos exactos.
+- El widget de Hoy usara Glance en la primera version.
+- Si Glance limita demasiado el widget, se evaluara RemoteViews como alternativa.
+- El identificador tecnico de la app sera `com.lizartza.agenda`.
