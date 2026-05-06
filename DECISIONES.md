@@ -240,3 +240,51 @@ Consecuencias:
 - Desde Completadas se podra reanudar una tarea, cambiandola de completada a activa.
 - Los eventos pasados asociados a una tarea completada se conservaran.
 - Si una tarea completada tiene eventos futuros asociados, la app preguntara si conservarlos o eliminarlos.
+
+## 2026-05-06 - Edicion y borrado de eventos y tareas
+
+Decision:
+La app permitira editar y borrar eventos y tareas con confirmaciones cuando la accion pueda afectar a elementos relacionados.
+
+Motivo:
+Eventos y tareas pueden estar vinculados. Las acciones destructivas deben ser explicitas para evitar perdida accidental de informacion.
+
+Alternativas consideradas:
+- Borrar automaticamente todos los elementos relacionados.
+- Conservar siempre los elementos relacionados sin preguntar.
+- Preguntar cuando haya elementos relacionados o repetidos.
+
+Consecuencias:
+- Un evento podra editar titulo, fecha, hora o duracion, categoria, repeticion y recordatorio.
+- Si un evento esta vinculado a una tarea, al editarlo mantendra el vinculo.
+- Si un evento es repetido, al editar o borrar se preguntara si aplicar el cambio solo a ese evento o a toda la serie.
+- Borrar un evento vinculado a una tarea no borrara la tarea.
+- Una tarea podra editar titulo, prioridad, fecha limite y categoria.
+- Si cambia la categoria de una tarea, los eventos futuros asociados actualizaran su categoria automaticamente.
+- Los eventos pasados asociados no cambiaran al editar la categoria de la tarea.
+- Si se borra una tarea sin eventos asociados, se borrara directamente.
+- Si se borra una tarea con eventos asociados, la app preguntara si conservarlos como eventos normales o eliminarlos.
+
+## 2026-05-06 - Modelo tecnico de datos local
+
+Decision:
+Usar Room como base de datos local con tres entidades principales: `TaskEntity`, `EventEntity` y `CategoryEntity`.
+
+Motivo:
+La app sera independiente, local y centrada en Android. Room encaja bien con Kotlin, persistencia local y una estructura clara de entidades.
+
+Alternativas consideradas:
+- Guardar datos en preferencias simples.
+- Usar una base de datos local con entidades Room.
+- Crear una entidad separada para reglas de repeticion desde la primera version.
+
+Consecuencias:
+- `TaskEntity` tendra `id`, `title`, `priority`, `status`, `deadlineDate`, `categoryId`, `completedAt`, `createdAt` y `updatedAt`.
+- `EventEntity` tendra `id`, `title`, `date`, `startTime`, `endTime`, `isAllDay`, `categoryId`, `taskId`, `reminder`, `recurrenceType`, `recurrenceDays`, `recurrenceEndDate`, `createdAt` y `updatedAt`.
+- `CategoryEntity` tendra `id`, `name`, `color`, `createdAt` y `updatedAt`.
+- La repeticion simple se guardara con campos dentro de `EventEntity`, sin entidad separada en la primera version.
+- `recurrenceEndDate` sera opcional; si no existe, la repeticion continuara hasta que el usuario edite o borre el evento.
+- Los identificadores seran `Long` autogenerados por Room.
+- Se usaran enums para `TaskPriority`, `TaskStatus`, `ReminderOption` y `RecurrenceType`.
+- Se usara `LocalDate` para fechas, `LocalTime` para horas y `LocalDateTime` para marcas temporales.
+- Room necesitara `TypeConverters` para guardar esos tipos de fecha/hora y enums.

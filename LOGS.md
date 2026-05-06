@@ -27,3 +27,9 @@ Este archivo resume avances relevantes del proyecto en orden cronologico.
 - Se definio que el widget mostrara un resumen informativo de Hoy y abrira la app al tocarlo.
 - Se simplificaron los estados de tarea a activa y completada.
 - Se definio que las tareas completadas tendran historial, fecha de completado y podran reanudarse.
+- Se definieron reglas de edicion y borrado para eventos y tareas, con confirmaciones cuando haya elementos relacionados.
+
+## 2026-05-06
+
+- Se definio el modelo tecnico de datos local con `TaskEntity`, `EventEntity` y `CategoryEntity`.
+- Se decidio usar IDs `Long` autogenerados, enums para valores cerrados y tipos `LocalDate`, `LocalTime` y `LocalDateTime` con conversores Room.
