@@ -95,7 +95,7 @@ Consecuencias:
 ## 2026-05-05 - Eventos y tareas como conceptos separados
 
 Decision:
-Eventos y tareas seran conceptos separados. Un evento representa un bloque de tiempo en el calendario. Una tarea representa algo pendiente o en progreso que puede recibir uno o varios bloques de tiempo.
+Eventos y tareas seran conceptos separados. Un evento representa un bloque de tiempo en el calendario. Una tarea representa algo activo o completado que puede recibir uno o varios bloques de tiempo.
 
 Motivo:
 La agenda debe servir tanto para registrar compromisos fijos como para decidir a que tarea dedicar tiempo cuando haya un hueco disponible.
@@ -109,7 +109,7 @@ Consecuencias:
 - Los eventos pueden existir sin estar vinculados a ninguna tarea.
 - Una tarea puede tener varios eventos asociados en distintos dias u horarios.
 - Programar una tarea no la completa ni la elimina.
-- Una tarea solo deja de aparecer como pendiente cuando el usuario la marca como completada.
+- Una tarea solo deja de aparecer como activa cuando el usuario la marca como completada.
 - Los eventos y tareas no tendran descripcion en la primera version; el titulo sera suficiente.
 
 ## 2026-05-05 - Prioridad, estado y orden de tareas
@@ -127,8 +127,9 @@ Alternativas consideradas:
 
 Consecuencias:
 - Las prioridades iniciales seran alta, media y baja.
-- Los estados iniciales seran pendiente, en progreso y completada.
+- Los estados iniciales seran activa y completada.
 - La fecha limite sera opcional.
+- Las tareas activas apareceran en la lista principal.
 - Las tareas completadas no apareceran en la lista principal.
 - Primero apareceran las tareas vencidas o que vencen en 7 dias o menos.
 - Dentro del bloque urgente, se ordenara por fecha limite mas cercana y despues por prioridad.
@@ -212,8 +213,30 @@ Alternativas consideradas:
 Consecuencias:
 - Hoy mostrara la fecha actual, linea temporal del dia, eventos normales y bloques de tareas programadas para hoy.
 - Hoy no mostrara la lista general de tareas pendientes.
-- Las tareas pendientes y en progreso viviran en la pestana Tareas.
+- Las tareas activas viviran en la pestana Tareas.
 - Desde Tareas se podra seleccionar una tarea y asignarle un bloque de tiempo.
 - El widget mostrara resumen de Hoy, incluyendo proximos eventos y bloques programados.
 - El widget no mostrara la lista general de tareas pendientes.
 - El widget tendra interaccion minima en la primera version: al tocarlo abrira la app en Hoy.
+
+## 2026-05-06 - Flujos principales de tareas
+
+Decision:
+Las tareas solo tendran dos estados: activa y completada. La pestana Tareas tendra secciones internas para tareas activas y completadas.
+
+Motivo:
+La distincion entre pendiente y en progreso no aporta suficiente valor en la primera version. Una tarea puede seguir activa aunque ya tenga bloques de tiempo asignados.
+
+Alternativas consideradas:
+- Usar pendiente, en progreso y completada.
+- Usar solo activa y completada.
+
+Consecuencias:
+- Toda tarea nueva nace como activa.
+- Programar una tarea no cambia su estado.
+- Una tarea sigue activa hasta que el usuario la marca como completada.
+- Al completar una tarea, se guardara la fecha de completado.
+- Las tareas completadas se ocultaran de la lista principal, pero podran verse en la seccion Completadas.
+- Desde Completadas se podra reanudar una tarea, cambiandola de completada a activa.
+- Los eventos pasados asociados a una tarea completada se conservaran.
+- Si una tarea completada tiene eventos futuros asociados, la app preguntara si conservarlos o eliminarlos.

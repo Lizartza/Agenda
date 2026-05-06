@@ -18,10 +18,12 @@ Este archivo resume avances relevantes del proyecto en orden cronologico.
 - Se eligio Kotlin nativo como stack base.
 - Se eligio Jetpack Compose para la interfaz principal.
 - Se definio que eventos y tareas seran conceptos separados, y que programar una tarea crea bloques de tiempo sin completarla automaticamente.
-- Se definio que las tareas tendran prioridad alta, media o baja, estado pendiente, en progreso o completada, y fecha limite opcional.
+- Se definio que las tareas tendran prioridad alta, media o baja, estado activa o completada, y fecha limite opcional.
 - Se definio que la lista de tareas destacara primero las vencidas o las que venzan en los proximos 7 dias.
 - Se separaron las autorizaciones en `PROGRAMALO` para codigo, `DOCUMENTALO` para documentacion y `SUBELO A GITHUB` para commits y push.
 - Se definio el modelo inicial de eventos, incluyendo repeticion simple, solapamientos permitidos con aviso y recordatorio por defecto de 1 hora.
 - Se definio que eventos y tareas podran usar categorias compartidas con nombre y color.
 - Se definio la navegacion principal con barra inferior: Hoy, Semana, Mes, Tareas y Ajustes.
 - Se definio que el widget mostrara un resumen informativo de Hoy y abrira la app al tocarlo.
+- Se simplificaron los estados de tarea a activa y completada.
+- Se definio que las tareas completadas tendran historial, fecha de completado y podran reanudarse.
